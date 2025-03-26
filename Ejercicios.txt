@@ -1,0 +1,156 @@
+LISTAS
+
+Ejercicio 61. Explique la diferencia entre tipo abstracto de datos (TAD) y estructura de datos.
+
+Mientras que un TAD define el comportamiento abstracto de los datos, entendiendo como comportamiento abstracto las operaciones posibles con ellos, y de forma que no es necesario conocer la implementación de estas, las estructuras de datos son las implementaciones que permiten almacenar y organizar los datos de una forma eficiente.
+
+Podría resumirse como comportamiento abstracto vs. organización y almacenamiento.
+
+
+Ejercicio 62. Explique qué es una lista y cuáles son sus operaciones típicas.
+
+Una lista es una estructura de datos que se define como una secuencia ordenada de elementos. Las operaciones típicas que se pueden realizar en una lista son: creación de la lista, que puede estar vacía o comenzar con elementos; agregación de elementos, eliminación de los mismos, modificación, acceso y búsqueda, además de operaciones relativas al tamaño (número de elementos) de la lista. Incluimos dentro del acceso y búsqueda el poder recorrer la lista, y dentro de la modificación el poder ordenar los elementos.
+
+
+Ejercicio 63. Explique las diferentes formas de implementar una lista.
+
+- Array: una implementación estática de las listas de tamaño definido en la creación y no modificable que permite el almacenamiento de elementos contiguos en memoria.
+
+- ArrayList: una implementación dinámica de las listas que es redimensionable; esto es, que permite modificar su tamaño después de haber sido definida.
+
+- LinkedList o Lista Enlazada: una implementación dinámica de las listas cuya particularidad reside en el almacenamiento de datos en nodos que tienen referencias entre sí. Al igual que los ArrayList, permiten modificar el tamaño de la lista, pero, a diferencia de dicha implementación, los datos no están almacenados en posiciones contiguas de memoria, sino que los nodos están dispersos en memoria.
+
+
+Ejercicio 64. Explique las ventajas e inconvenientes del ArrayList frente al LinkedList.
+
+Gracias al almacenamiento en posiciones contiguas de memoria, el acceso a los elementos es más rápido en los ArrayList, que permiten un acceso por índice, mientras que en el caso de las listas enlazadas hay que recorrer todos los nodos (O(1) vs. O(n)). Además, el ArrayList, por este mismo motivo, tiene un almacenamiento en memoria más eficiente, puesto que las LinkedList necesitan memoria para almacenar las referencias a cada nodo.
+
+Sin embargo, en cuanto a los inconvenientes del ArrayList con respecto al LinkedList, la modificación del tamaño es más costosa, puesto que implica crear un nuevo Array al que copiar los elementos del original, mientras que los LinkedList permiten un crecimiento sin redimensionamiento, lo que es mucho más rápido. Por otro lado, con respecto a la inserción y eliminación de elementos, los ArrayList tienen un mayor coste de tiempo cuando se pretende insertar elementos al principio o entre medias, mientras que en los LinkedList, si hay referencia al nodo, es más rápido y se da sin necesidad de desplazar elementos.
+
+
+
+Ejercicio 65. Examine los siguientes códigos fuente e identifique la relación
+entre ellos:
+1. Collection.java.
+2. List.java.
+3. ArrayList.java.
+4. LinkedList.java.
+
+La relación entre los códigos fuente es que podemos ver que Collection.java es la interfaz que hace de clase padre de todas las colecciones, dentro de las cuales encontramos a List.java, que es la interfaz de la que parten todas las listas. ArrayList.java y LinkedList.java son dos tipos de listas que parten de List.java, pero se definen e implementan de forma distinta, tal y como puede observarse en los anteriores ejercicios.
+
+
+
+PILAS
+
+
+Ejercicio 66. Explique qué es una pila y cuáles son sus operaciones típicas.
+
+Una pila es una estructura de datos que se define como una colección de elementos que pueden repetirse en el que el orden de inserción es relevante, puesto que solo hay acceso directo al último elemento añadido (LIFO).
+
+Las operaciones típicas de las pilas son: añadir (push en Java), consultar/inspeccionar (peek), quitar (pop), comprobar si está vacía (empty) y obtener el tamaño de la pila (número de elementos: size).
+
+
+
+Ejercicio 67. Indique dos aplicaciones en que se utilizan pilas.
+
+Uno de los usos más extendidos de las pilas es en los métodos recursivos, donde accedemos al método en sí mismo como parte de su definición; esto es posible debido a que los parámetros y la dirección de retorno de la llamada actual se almacenan en una pila y permiten al programa acceder al finalizar la función.
+
+Otra aplicación de las pilas es la de la función de deshacer cambios en muchos programas. Los cambios se almacenan en pilas, quedando últimos los más recientes, y son estos aquellos a los que podemos acceder para revertirlos.
+
+
+
+Ejercicio 68. Explique la relación existente entre el TAD lista y el TAD pila.
+
+Ambas son colecciones; es decir, que permiten almacenar elementos y datos. Además, en ambas mantienen un orden los elementos, y permiten tanto añadir como eliminar y acceder a los elementos, aunque sea de formas diferentes.
+
+
+
+Ejercicio 69. Examine el código fuente de las clases Stack.java y Vector.java. Identifique la relación entre ellos y con ArrayList.java.
+
+Las tres implementan la interfaz List, pero Stack deriva de Vector añadiendo las operaciones más propias de las pilas. Vector y ArrayList son muy parecidos, incluso casi iguales, según la documentación, pero se diferencian en que el ArrayList no está sincronizado, mientras que Vector sí.
+
+
+Ejercicio 70. Ejecute y explique el siguiente código:
+
+
+import java.util.Stack;
+
+public class DemoPilas {
+        public static void main(String[] args) {
+
+            //Creamos la pila de nombre pila, que se define como vacía en su creación.
+            Stack<Integer> pila = new Stack<>();
+            //Añadimos los elementos 1 y 2, en ese orden, a la pila.
+            pila.push(1);
+            pila.push(2);
+            //Pedimos que se escriba por pantalla la pila; es decir, los elementos que contiene la misma.
+            System.out.println(pila);
+            //Pedimos que se escriba por pantalla el elemento que está último en la pila.
+            System.out.println(pila.peek());
+            //Quitamos el elemento que hemos inspeccionado de la pila.
+            pila.pop();
+            //Volvemos a pedir que se escriba por pantalla la pila para ver los cambios. Se ha quitado el último elemento.
+            System.out.println(pila);
+        }
+    }
+
+
+COLAS
+
+Ejercicio 71. Explique qué es una cola y cuáles son sus operaciones típicas.
+
+Se entiende como una cola a la estructura de datos que se define como una colección de elementos que pueden repetirse cuyo orden
+de inserción no es relevante y en la que solo tenemos acceso al elemento más antiguo añadido (FIFO).
+
+Las operaciones típicas de las colas son: vaciar la cola (emptyQueue), añadir elementos a la cola (add), inspeccionar el elemento
+accesible (peek), eliminar un elemento de la cola (remove), comprobar si está vacía (empty) y ver el tamaño de la cola (número de elementos: size).
+
+
+
+Ejercicio 72. Indique tipos de aplicaciones en que se utilicen colas.
+
+Las colas son ampliamente utilizadas, y uno de los ejemplos más claros se da en la gestión de tareas en los sistemas operativos. Por ejemplo,
+al descargar aplicaciones, los archivos se descargan en un determinado orden, al igual que se crean las estructuras de directorios en un determinado
+orden que viene dado por dichas colas.
+
+También lo encontramos en los routers o enrutadores, que envían los paquetes mediante los distintos protocolos en un determinado orden.
+
+
+
+Ejercicio 73. Examine el código de la clase ArrayDequeue.java y explique cómo aplica la aritmética modular.
+
+ArrayDeque emplea la aritmética modular para calcular posiciones de índices sin salirse del tamaño del Array, de tal forma que pueda volver a una posición
+disonible (vacía) dentro del Array sin sobredimensionar. Esto simplifica las operaciones de acceso, inserción o eliminación de elementos en Arrays.
+
+
+
+Ejercicio 74. Ejecute y explique el siguiente código, y compare su comportamiento con el programa del ejercicio 70:
+
+import java.util.ArrayDeque;
+
+
+public class DemoColas
+{
+    public static void main(String[] args)
+    {
+        //Creamos una cola que se define como vacía.
+        ArrayDeque<Integer> cola = new ArrayDeque<>();
+        //Añadimos dos elementos 1 y 2 en su respectivo orden.
+        cola.add(1);
+        cola.add(2);
+        //Pedimos que se escriba por pantalla la cola; esto es, sus elementos.
+        System.out.println(cola);
+        //Inspeccionamos el elemento accesible de la cola, que es el primero que fue añadido.
+        System.out.println(cola.peek());
+        //Cogemos el elemento accesible de la cola (el primero añadido) y lo eliminamos.
+        System.out.println(cola.poll());
+        //Escribimos por pantalla la cola, que ahora ya no tiene el primer elemento original.
+        System.out.println(cola);
+    }
+
+A diferencia del código del programa del ejercicio 70, donde trabajábamos con una pila, en este, en el que trabajamos con una cola,
+además de las diferencias de nombres (push -> add; pop -> poll...), observamos que el elemento accesible es distinto: en las pilas accedíamos
+y eliminábamos el último añadido, mientras que en las colas accedemos y eliminamos el primero que fue añadido.
+
+
+
